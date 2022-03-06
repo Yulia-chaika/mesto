@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Место</title>
+  </head>
+  <body>
+    <div class="main-page">
+      <header class="header">
+        <img
+          src="./images/header/logo.png"
+          class="header__logo"
+          alt="Лого хедер"
+        />
+      </header>
+      <section class="profile">
+        <img
+          src="./images/profile/avatar.png"
+          class="profile__avatar"
+          alt="Фото"
+        />
+        <div class="profile__content">
+          <div class="profile__info">
+            <p class="profile__name">Жак-Ив Кусто</p>
+
+            <button class="profile__edit-button">
+              <img
+                src="./images/profile/edit-button.png"
+                class="profile__edit-button-image"
+                alt="Кнопка редактирования"
+              />
+            </button>
+            <div class="popup" id="popupForm">
+              <form action="#" class="popup__container">
+                <button type="button" class="popup__close-button">
+                  <img
+                    src="./images/profile/close-icon.png"
+                    class="popup__close-button-image"
+                    alt="Закрыть x"
+                  />
+                </button>
+                <h1 class="popup__title">Редактировать профиль</h1>
+                <input
+                  type="text"
+                  value=""
+                  class="popup__text"
+                  id="popup-name"
+                  name="popup-name"
+                  required
+                />
+                <div class="popup__line"></div>
+                <input
+                  type="text"
+                  value=""
+                  class="popup__text"
+                  id="popup-whois"
+                  name="popup-whois"
+                  required
+                />
+                <div class="popup__line"></div>
+                <button type="submit" class="popup__save-button">
+                  Сохранить
+                </button>
+              </form>
+            </div>
+            <p class="profile__whois">Исследователь океана</p>
+          </div>
+        </div>
+        <button class="profile__add-button">
+          <img
+            src="./images/profile/add-button.png"
+            class="profile__add-button-image"
+            alt="Добавить"
+          />
+        </button>
+      </section>
+      <section class="elements">
+        <div class="element">
+          <img
+            src="./images/element/karachaevsk.png"
+            class="element__image"
+            alt="Карачаевск"
+          />
+          <div class="element__like-bar">
+            <p class="element__title">Карачаевск</p>
+            <button class="element__like-button" type="button"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img
+            src="./images/element/gora-elbrus.png"
+            class="element__image"
+            alt="Эльбрус"
+          />
+          <div class="element__like-bar">
+            <p class="element__title">Гора Эльбрус</p>
+            <button class="element__like-button"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img
+            src="./images/element/dombai.png"
+            class="element__image"
+            alt="Домбай"
+          />
+          <div class="element__like-bar">
+            <p class="element__title">Домбай</p>
+            <button class="element__like-button"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img
+            src="./images/element/gora-elbrus.png"
+            class="element__image"
+            alt="Эльбрус"
+          />
+          <div class="element__like-bar">
+            <p class="element__title">Гора Эльбрус</p>
+            <button class="element__like-button"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img
+            src="./images/element/dombai.png"
+            class="element__image"
+            alt="Домбай"
+          />
+          <div class="element__like-bar">
+            <p class="element__title">Домбай</p>
+            <button class="element__like-button"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img
+            src="./images/element/karachaevsk.png"
+            class="element__image"
+            alt="Карачаево-Черкессия"
+          />
+          <div class="element__like-bar">
+            <p class="element__title">Карачаево-Черкессия</p>
+            <button class="element__like-button"></button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <img
+          src="./images/footer/2020Mesto-Russia.png"
+          class="footer__logo"
+          alt="Лого футер"
+        />
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
