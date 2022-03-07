@@ -1,5 +1,5 @@
 .elements {
-  max-width: calc(100% - 2 * 200px);
+  max-width: 69%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, max-content);
@@ -7,7 +7,7 @@
   gap: 17px;
   padding-top: 47.25px;
 }
-
+/*
 @media screen and (max-width: 1200px) {
   .elements {
     max-width: calc(100% - 2 * 160px);
@@ -81,7 +81,7 @@
     max-width: calc(100% - 2 * 50px);
   }
 }
-
+*/
 @media screen and (max-width: 320px) {
   .elements {
     grid-template-columns: 1fr;
