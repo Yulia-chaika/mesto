@@ -1,5 +1,5 @@
 .elements {
-  max-width: 80%; 
+  max-width: 80%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
@@ -9,14 +9,11 @@
   justify-content: center;
 }
 
-
-
 @media screen and (max-width: 1200px) {
   .elements {
     max-width: calc(100% - 2 * 30px);
-  }}
-
-
+  }
+}
 
 @media screen and (max-width: 1000px) {
   .elements {
@@ -33,7 +30,7 @@
 @media screen and (max-width: 768px) {
   .elements {
     grid-template-columns: repeat(2, max-content);
-    grid-template-rows: repeat(2, 1fr); 
+    grid-template-rows: repeat(2, 1fr);
     max-width: calc(100% - 2 * 10px);
   }
 }
@@ -41,7 +38,7 @@
 @media screen and (max-width: 665px) {
   .elements {
     grid-template-columns: repeat(2, max-content);
-    grid-template-rows: repeat(2, 1fr); 
+    grid-template-rows: repeat(2, 1fr);
     max-width: calc(100% - 2 * 40px);
     gap: 10px;
   }
@@ -57,14 +54,14 @@
 @media screen and (max-width: 500px) {
   .elements {
     grid-template-columns: 1fr;
-   max-width: calc(100% - 2 * 80px); 
+    max-width: calc(100% - 2 * 80px);
   }
 }
 
 @media screen and (max-width: 500px) {
   .elements {
     grid-template-columns: 1fr;
-    max-width: calc(100% - 2 * 50px); 
+    max-width: calc(100% - 2 * 50px);
   }
 }
 
@@ -73,6 +70,6 @@
     grid-template-columns: 1fr;
     max-width: 88%;
     gap: 20px;
-  padding-top:36px;
+    padding-top: 36px;
   }
 }

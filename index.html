@@ -15,7 +15,7 @@
           alt="Лого хедер"
         />
       </header>
-      <main class="content">
+
       <section class="profile">
         <img
           src="./images/profile/avatar.png"
@@ -33,7 +33,7 @@
                 alt="Кнопка редактирования"
               />
             </button>
-     
+
             <p class="profile__whois">Исследователь океана</p>
           </div>
         </div>
@@ -54,7 +54,11 @@
           />
           <div class="element__like-bar">
             <h3 class="element__title">Карачаевск</h3>
-            <button aria-label="Like" class="element__like-button" type="button"></button>
+            <button
+              aria-label="Like"
+              class="element__like-button"
+              type="button"
+            ></button>
           </div>
         </article>
         <article class="element">
@@ -65,7 +69,7 @@
           />
           <div class="element__like-bar">
             <h3 class="element__title">Гора Эльбрус</h3>
-            <button  aria-label="Like" class="element__like-button"></button>
+            <button aria-label="Like" class="element__like-button"></button>
           </div>
         </article>
         <article class="element">
@@ -76,7 +80,7 @@
           />
           <div class="element__like-bar">
             <h3 class="element__title">Домбай</h3>
-            <button  aria-label="Like"class="element__like-button"></button>
+            <button aria-label="Like" class="element__like-button"></button>
           </div>
         </article>
         <article class="element">
@@ -87,7 +91,7 @@
           />
           <div class="element__like-bar">
             <h3 class="element__title">Гора Эльбрус</h3>
-            <button  aria-label="Like" class="element__like-button"></button>
+            <button aria-label="Like" class="element__like-button"></button>
           </div>
         </article>
         <article class="element">
@@ -98,7 +102,7 @@
           />
           <div class="element__like-bar">
             <h3 class="element__title">Домбай</h3>
-            <button  aria-label="Like" class="element__like-button"></button>
+            <button aria-label="Like" class="element__like-button"></button>
           </div>
         </article>
         <article class="element">
@@ -113,16 +117,11 @@
           </div>
         </article>
       </section>
-</main>
+
       <footer class="footer">
-       <p   
-          class="footer__logo"
-          alt="Лого футер">
-          © 2020 Mesto Russia
-        </p>
-      
+        <p class="footer__logo">© 2020 Mesto Russia</p>
       </footer>
-    </div>
+    </main>
     <div class="popup" id="popupForm">
       <div class="container">
         <button aria-label="close" type="button" class="popup__close-button">
@@ -133,31 +132,28 @@
           />
         </button>
         <h2 class="popup__title">Редактировать профиль</h2>
-       
+
         <form action="#" class="container__form">
-             
-        <input
-          type="text"
-          value=""
-          class="popup__text"
-          id="popup-name"
-          name="popup-name"
-          required
-        />
-        
-        <input
-          type="text"
-          value=""
-          class="popup__text"
-          id="popup-whois"
-          name="popup-whois"
-          required
-        />
-        
-        <button type="submit" class="popup__save-button">
-          Сохранить
-        </button>
-      </form>
+          <input
+            type="text"
+            value=""
+            class="popup__text"
+            id="popup-name"
+            name="popup-name"
+            required
+          />
+
+          <input
+            type="text"
+            value=""
+            class="popup__text"
+            id="popup-whois"
+            name="popup-whois"
+            required
+          />
+
+          <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
       </div>
     </div>
     <script src="script.js"></script>
