@@ -1,0 +1,22 @@
+.element__like-button {
+  background: white;
+  border: none;
+  font-size: 24px;
+}
+
+.element__like-button:before {
+  content: "\2661";
+}
+
+.element__like-button:hover {
+  opacity: 0.5;
+  cursor: pointer;
+  transition: color 1s;
+}
+
+.element__like-button:active:before {
+  content: "\2665";
+  cursor: pointer;
+  color: black;
+  transition: color 0.2s;
+}

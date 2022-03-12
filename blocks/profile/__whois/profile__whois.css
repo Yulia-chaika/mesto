@@ -1,0 +1,24 @@
+.profile__whois {
+  max-width: 220px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 450px) {
+  .profile__whois {
+    margin: 8px 15px 16px 15px;
+    
+    grid-column: 1/3;
+    font-size: 14px;
+line-height: 17px;
+
+  }
+}

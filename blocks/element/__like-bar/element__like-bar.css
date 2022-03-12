@@ -1,0 +1,14 @@
+.element__like-bar {
+  max-width: 87%;
+  margin: 25px 15px 31px 21px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 320px) {
+  .element__like-bar {
+    margin-top: 20px;
+    margin-bottom: 26px;
+  }
+  
+}
