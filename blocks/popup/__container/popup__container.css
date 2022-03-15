@@ -1,4 +1,4 @@
-.container {
+.popup__container {
   max-width: 34%;
   padding: 34px;
   box-sizing: border-box;
@@ -11,13 +11,13 @@
   position: relative;
 }
 
-.container[type="text"] {
+.popup__container[type="text"] {
   max-width: 358px;
   border: none;
 }
 
 @media screen and (max-width: 787px) {
-  .container {
+  .popup__container {
     max-width: 88%;
     padding: 22px;
   }
