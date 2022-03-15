@@ -2,8 +2,8 @@
   position: absolute;
   background: none;
   border: 0;
-  left: 67%;
-  top: 100px;
+  left: 100%;
+  top: -35px;
 }
 
 .popup__close-button:hover {

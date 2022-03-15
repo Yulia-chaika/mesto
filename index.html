@@ -6,8 +6,10 @@
     <link rel="stylesheet" href="./pages/index.css" />
     <title>Место</title>
   </head>
-  <body>
+  <body class="body">
+  
     <main class="main-page">
+
       <header class="header">
         <img
           src="./images/header/logo.svg"
@@ -15,6 +17,7 @@
           alt="Лого хедер"
         />
       </header>
+  
 
       <section class="profile">
         <img
@@ -26,7 +29,11 @@
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
 
-            <button aria-label="edit" class="profile__edit-button">
+            <button
+              aria-label="edit"
+              class="profile__edit-button"
+              type="button"
+            >
               <img
                 src="./images/profile/edit-button.svg"
                 class="profile__edit-button-image"
@@ -37,7 +44,7 @@
             <p class="profile__whois">Исследователь океана</p>
           </div>
         </div>
-        <button aria-label="Add" class="profile__add-button">
+        <button aria-label="Add" class="profile__add-button" type="button">
           <img
             src="./images/profile/add-button.svg"
             class="profile__add-button-image"
@@ -53,7 +60,7 @@
             alt="Карачаевск"
           />
           <div class="element__like-bar">
-            <h3 class="element__title">Карачаевск</h3>
+            <h2 class="element__title">Карачаевск</h2>
             <button
               aria-label="Like"
               class="element__like-button"
@@ -68,8 +75,12 @@
             alt="Эльбрус"
           />
           <div class="element__like-bar">
-            <h3 class="element__title">Гора Эльбрус</h3>
-            <button aria-label="Like" class="element__like-button"></button>
+            <h2 class="element__title">Гора Эльбрус</h2>
+            <button
+              aria-label="Like"
+              class="element__like-button"
+              type="button"
+            ></button>
           </div>
         </article>
         <article class="element">
@@ -79,8 +90,12 @@
             alt="Домбай"
           />
           <div class="element__like-bar">
-            <h3 class="element__title">Домбай</h3>
-            <button aria-label="Like" class="element__like-button"></button>
+            <h2 class="element__title">Домбай</h2>
+            <button
+              aria-label="Like"
+              class="element__like-button"
+              type="button"
+            ></button>
           </div>
         </article>
         <article class="element">
@@ -90,8 +105,12 @@
             alt="Эльбрус"
           />
           <div class="element__like-bar">
-            <h3 class="element__title">Гора Эльбрус</h3>
-            <button aria-label="Like" class="element__like-button"></button>
+            <h2 class="element__title">Гора Эльбрус</h2>
+            <button
+              aria-label="Like"
+              class="element__like-button"
+              type="button"
+            ></button>
           </div>
         </article>
         <article class="element">
@@ -101,8 +120,12 @@
             alt="Домбай"
           />
           <div class="element__like-bar">
-            <h3 class="element__title">Домбай</h3>
-            <button aria-label="Like" class="element__like-button"></button>
+            <h2 class="element__title">Домбай</h2>
+            <button
+              aria-label="Like"
+              class="element__like-button"
+              type="button"
+            ></button>
           </div>
         </article>
         <article class="element">
@@ -113,18 +136,32 @@
           />
           <div class="element__like-bar">
             <h3 class="element__title">Карачаево-Черкессия</h3>
-            <button aria-label="Like" class="element__like-button"></button>
+            <button
+              aria-label="Like"
+              class="element__like-button"
+              type="button"
+            ></button>
           </div>
         </article>
       </section>
 
+
       <footer class="footer">
         <p class="footer__logo">© 2020 Mesto Russia</p>
       </footer>
+
     </main>
+
+  
+
     <div class="popup" id="popupForm">
-      <div class="container">
-        <button aria-label="close" type="button" class="popup__close-button">
+      <div class="popup__container">
+        <button
+          aria-label="close"
+          type="button"
+          class="popup__close-button"
+          type="button"
+        >
           <img
             src="./images/profile/close-icon.svg"
             class="popup__close-button-image"
@@ -133,7 +170,7 @@
         </button>
         <h2 class="popup__title">Редактировать профиль</h2>
 
-        <form action="#" class="container__form">
+        <form action="#" class="container__form" name="popupContainer">
           <input
             type="text"
             value=""

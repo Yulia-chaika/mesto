@@ -24,6 +24,19 @@ function formSubmitHandler(evt) {
   closePopup();
 }
 
+function profileNameTitle() {
+  userName.setAttribute("title", popupUserName.value);
+  userName.style.cursor = "default";
+}
+
+function profileWhoisTitle() {
+  userWhois.setAttribute("title", popupUserWhois.value);
+  userWhois.style.cursor = "default";
+}
+
+userName.addEventListener("mouseover", profileNameTitle);
+userWhois.addEventListener("mouseover", profileWhoisTitle);
+userWhois.setAttribute("title", popupUserWhois);
 popupEditBtn.addEventListener("click", openPopup);
 popupCloseBtn.addEventListener("click", closePopup);
 popupContainer.addEventListener("submit", formSubmitHandler);

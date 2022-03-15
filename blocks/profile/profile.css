@@ -1,14 +1,15 @@
 .profile {
   max-width: 69%;
   min-height: 120px;
-  margin: 20px auto 0 auto;
+  padding-top: 38px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
 }
 
 @media screen and (max-width: 1000px) {
   .profile {
-    margin: 10px auto 0 auto;
+  
     max-width: 85%;
   }
 }
@@ -20,9 +21,3 @@
   }
 }
 
-@media screen and (max-width: 320px) {
-  .profile {
-    margin: 38px auto 0 auto;
-  }
-  
-}
