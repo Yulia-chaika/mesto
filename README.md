@@ -23,6 +23,6 @@ vendor
 
 **GitHub Pages**
 
-* [Ссылка на проект GitHub Pages](https://yulia-chaika.github.io/russian-travel/)
+* [Ссылка на проект GitHub Pages](https://yulia-chaika.github.io/mesto/)
 
 
