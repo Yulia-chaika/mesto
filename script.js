@@ -1,5 +1,5 @@
 let popup = document.getElementById("popupForm");
-let popupContainer = document.querySelector(".container");
+let popupForm = document.querySelector(".popup__form");
 let popupEditBtn = document.querySelector(".profile__edit-button");
 let popupCloseBtn = document.querySelector(".popup__close-button");
 let userName = document.querySelector(".profile__name");
@@ -39,4 +39,4 @@ userWhois.addEventListener("mouseover", profileWhoisTitle);
 userWhois.setAttribute("title", popupUserWhois);
 popupEditBtn.addEventListener("click", openPopup);
 popupCloseBtn.addEventListener("click", closePopup);
-popupContainer.addEventListener("submit", formSubmitHandler);
+popupForm.addEventListener("submit", formSubmitHandler);

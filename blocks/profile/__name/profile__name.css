@@ -20,6 +20,14 @@
   }
 }
 
+@media screen and (max-width: 500px) {
+  .profile__name {
+    max-width: 240px;
+    
+  }
+}
+
+
 @media screen and (max-width: 320px) {
   .profile__name {
     line-height: 35px;

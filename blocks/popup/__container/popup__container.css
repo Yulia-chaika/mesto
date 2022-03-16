@@ -9,6 +9,7 @@
   align-self: center;
   margin: 0 auto;
   position: relative;
+  top: -60px;
 }
 
 .popup__container[type="text"] {
@@ -20,5 +21,12 @@
   .popup__container {
     max-width: 88%;
     padding: 22px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .popup__container {
+    top: -140px;
+    padding-top: 28px;
   }
 }
