@@ -1,22 +1,27 @@
 .element__like-button {
-  background: white;
+  background: url(../../../images/element/heart-like.png)  no-repeat;
+  background-size: contain;
   border: none;
-  font-size: 24px;
+  width:  22px;
+  height: 19px;
+  padding-right: 15px;
 }
-
+/*
 .element__like-button:before {
   content: "\2661";
-}
-
+} 
+*/
 .element__like-button:hover {
   opacity: 0.5;
   cursor: pointer;
-  transition: color 1s;
+  transition: opacity 0.3s;
 }
 
+/*
 .element__like-button:active:before {
   content: "\2665";
   cursor: pointer;
   color: black;
   transition: color 0.2s;
 }
+*/

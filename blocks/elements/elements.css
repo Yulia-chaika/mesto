@@ -3,7 +3,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(auto-fit, 365px);
   gap: 17px;
   padding-top: 50px;
   justify-content: center;
