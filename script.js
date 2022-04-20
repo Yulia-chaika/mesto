@@ -1,37 +1,3 @@
-const popupEditProfile = document.querySelector(".popup_style_edit");
-const popupFormEditProfile = popupEditProfile.querySelector(".popup__form_edit_profile");
-const popupCloseEditProfileBtn = popupEditProfile.querySelector(".popup__close-button_close_edit-profile");
-const popupUserName = popupEditProfile.querySelector(".popup__text_name");
-const popupUserWhois = popupEditProfile.querySelector(".popup__text_whois");
-const popupImage = document.querySelector(".popup_style_image");
-const popupCloseImage = document.querySelector(".popup__close-button_image");
-const popupNewMesto = document.querySelector(".popup_style_new-mesto");
-const popupFormNewMesto = popupNewMesto.querySelector(".popup__form_new-mesto");
-const popupCloseNewMestoBtn = popupNewMesto.querySelector(".popup__close-button_new-mesto");
-const popupAddBtn = document.querySelector(".profile__add-button");
-const popupEditBtn = document.querySelector(".profile__edit-button");
-const userName = document.querySelector(".profile__name");
-const userWhois = document.querySelector(".profile__whois");
-
-
-function openPopup(opn) {
-  opn.classList.add("popup_opened");
-  return opn;
-}
-
-function closePopup(cls) {
-  cls.classList.remove("popup_opened");
-  return cls;
-}
-
-function activeLike(evt) {
-  evt.target.classList.toggle("element__like-button_active");
-};
-
-function deleteElement(evt) {
-  evt.target.closest(".element").remove();
-};
-
 const initialCards = [ 
   {
     name: "Архыз",
@@ -59,10 +25,48 @@ const initialCards = [
   },
 ];
 
+const popupEditProfile = document.querySelector(".popup_style_edit");
+const popupFormEditProfile = popupEditProfile.querySelector(".popup__form_edit_profile");
+const popupCloseEditProfileBtn = popupEditProfile.querySelector(".popup__close-button_close_edit-profile"); 
+const popupUserName = popupEditProfile.querySelector(".popup__text_name");
+const popupUserWhois = popupEditProfile.querySelector(".popup__text_whois");
+const popupImage = document.querySelector(".popup_style_image");
+const popupImagePreview = document.querySelector(".popup__image");
+const popupImagePreveiwName = document.querySelector(".popup__image-name");
+const popupCloseImage = document.querySelector(".popup__close-button_image"); 
+const popupNewMesto = document.querySelector(".popup_style_new-mesto");
+const popupNewMestoForm = document.querySelector(".popup__form_new-mesto");
+const popupMestoLink = document.querySelector(".popup__text_mesto-link");
+const popupMestoName = document.querySelector(".popup__text_mesto-name");
+const popupFormNewMesto = popupNewMesto.querySelector(".popup__form_new-mesto");
+ const popupCloseNewMestoBtn = popupNewMesto.querySelector(".popup__close-button_new-mesto"); 
+const popupAddBtn = document.querySelector(".profile__add-button");
+const popupEditBtn = document.querySelector(".profile__edit-button");
+const userName = document.querySelector(".profile__name");
+const userWhois = document.querySelector(".profile__whois");
 const elementList = document.querySelector(".elements"); //получаем template методом QuerySelector
 const elementTemplate = document.querySelector("#element").content; //получаем содержимое template
 
-function createNewMesto(element) {
+
+
+function openPopup(opn) {
+  opn.classList.add("popup_opened");
+ }
+
+function closePopup(cls) {
+  cls.classList.remove("popup_opened");
+}
+
+function activeLike(evt) {
+  evt.target.classList.toggle("element__like-button_active");
+};
+
+function deleteElement(evt) {
+  evt.target.closest(".element").remove();
+};
+
+
+function getCard(element) {
   const userElementTemplate = elementTemplate.cloneNode(true); //клонируем содержимое тега template
 
   //наполняем содержимым
@@ -75,37 +79,37 @@ function createNewMesto(element) {
 
   function createImagePreview() {
     openPopup(popupImage);
-    const popupImagePreview = document.querySelector(
-      ".popup__image"
-    );
-    const popupImagePreveiwName = document.querySelector(
-      ".popup__image-name"
-    );
+    
     popupImagePreview.src = element.link;
     popupImagePreveiwName.textContent = element.name;
     
 };
-  //отображаем на странице
-  elementList.prepend(userElementTemplate);
+
+return userElementTemplate
   
 }
 
-initialCards.forEach(function (element) {
-  createNewMesto(element);
-});
+function renderCard(userElementTemplate) {
+ 
+  elementList.prepend(getCard(userElementTemplate))
+}
 
-function formSubmitNewMesto(evt) {
+initialCards.forEach(function (element) { 
+
+  renderCard(element); 
+
+}); 
+
+function handleNewMestoFormSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  const popupMestoLink = document.getElementById("popup-mesto-link");
-  const popupMestoName = document.getElementById("popup-mesto-name");
 
   const saveNewMesto = {
     name: popupMestoName.value,
     link: popupMestoLink.value,
   };
-  createNewMesto(saveNewMesto);
+  renderCard(saveNewMesto);
   closePopup(popupNewMesto);
-  
+  popupNewMestoForm.reset();
 };
 
 
@@ -115,7 +119,7 @@ function copyProfileInfoToPopup() {
   popupUserWhois.value = userWhois.textContent;
 }
 
-function formSubmitEditPopup(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   userName.textContent = popupUserName.value; // Так мы можем определить свою логику отправки.
   userWhois.textContent = popupUserWhois.value; // О том, как это делать, расскажем позже.
@@ -132,12 +136,25 @@ function profileWhoisTitle() {
   userWhois.style.cursor = "default";
 }
 
+
 userName.addEventListener("mouseover", profileNameTitle);
 userWhois.addEventListener("mouseover", profileWhoisTitle);
 popupEditBtn.addEventListener("click", copyProfileInfoToPopup); //Откроем Popup редактирования профиля
 popupAddBtn.addEventListener("click", () => openPopup(popupNewMesto)); //Откроем Popup добавления картинки
-popupCloseEditProfileBtn.addEventListener("click", () => closePopup(popupEditProfile)); //Закроем Popup редактирования профиля
-popupCloseNewMestoBtn.addEventListener("click", () => closePopup(popupNewMesto)); //Закроем Popup добавления картинки
-popupCloseImage.addEventListener("click", () => closePopup(popupImage));
-popupFormEditProfile.addEventListener("submit", formSubmitEditPopup);
-popupFormNewMesto.addEventListener("submit", formSubmitNewMesto);
+popupCloseEditProfileBtn.addEventListener("click", () => closePopup(popupEditProfile)); //Закроем Popup редактирования профиля 
+popupCloseNewMestoBtn.addEventListener("click", () => closePopup(popupNewMesto)); //Закроем Popup добавления картинки 
+popupCloseImage.addEventListener("click", () => closePopup(popupImage)); 
+popupFormEditProfile.addEventListener("submit", handleProfileFormSubmit);
+popupFormNewMesto.addEventListener("submit", handleNewMestoFormSubmit);
+
+/* Пробовала, но почему-то не работает. Не разобралась почему. Исправила только класс на .popup__close-button
+
+const popups = document.querySelectorAll(".popup");
+
+popups.forEach((popup) => {
+    popup.addEventListener("click", (evt) => {
+       if (evt.target.classList.contains(".popup__close-button")) {
+          closePopup(popup)
+        }
+    })
+}) */
