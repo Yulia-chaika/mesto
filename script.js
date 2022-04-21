@@ -68,19 +68,23 @@ function deleteElement(evt) {
 
 function getCard(element) {
   const userElementTemplate = elementTemplate.cloneNode(true); //клонируем содержимое тега template
+  const elementImage = userElementTemplate.querySelector(".element__image");
 
   //наполняем содержимым
-  userElementTemplate.querySelector(".element__image").src = element.link;
-  userElementTemplate.querySelector(".element__image").alt = "Фото" + " " + element.name;
+  elementImage.src = element.link;
+  elementImage.alt = "Фото" + " " + element.name;
+  elementImage.title = "Фото" + " " + element.name;
   userElementTemplate.querySelector(".element__title").textContent = element.name;
   userElementTemplate.querySelector(".element__like-button").addEventListener("click", activeLike);
   userElementTemplate.querySelector(".element__trash-button").addEventListener("click", deleteElement);
-  userElementTemplate.querySelector(".element__image").addEventListener("click", createImagePreview);
+  elementImage.addEventListener("click", createImagePreview);
 
   function createImagePreview() {
     openPopup(popupImage);
     
     popupImagePreview.src = element.link;
+    popupImagePreview.title = element.name;
+    popupImagePreview.alt = element.name;
     popupImagePreveiwName.textContent = element.name;
     
 };
