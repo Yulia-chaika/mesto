@@ -1,5 +1,8 @@
 .popup__container_style_image {
   background: none;
  max-width: 100%;
- padding: 0;
+ display: flex;
+ align-items: start;
+ align-content: center; 
+ justify-content: center; 
 }

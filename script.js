@@ -1,4 +1,4 @@
-const initialCards = [ 
+const initialCards = [
   {
     name: "Архыз",
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
@@ -26,45 +26,82 @@ const initialCards = [
 ];
 
 const popupEditProfile = document.querySelector(".popup_style_edit");
-const popupFormEditProfile = popupEditProfile.querySelector(".popup__form_edit_profile");
-const popupCloseEditProfileBtn = popupEditProfile.querySelector(".popup__close-button_close_edit-profile"); 
-const popupUserName = popupEditProfile.querySelector(".popup__text_name");
-const popupUserWhois = popupEditProfile.querySelector(".popup__text_whois");
+const popupFormEditProfile = document.forms.editprofile;
+const popupFormInput = popupFormEditProfile.querySelector(".popup__input");
+const popupUserName = popupFormEditProfile.querySelector(".popup__input_name");
+const popupUserWhois = popupFormEditProfile.querySelector(
+  ".popup__input_whois"
+);
 const popupImage = document.querySelector(".popup_style_image");
-const popupImagePreview = document.querySelector(".popup__image");
-const popupImagePreveiwName = document.querySelector(".popup__image-name");
-const popupCloseImage = document.querySelector(".popup__close-button_image"); 
+const popupImagePreview = popupImage.querySelector(".popup__image-size");
+const popupImagePreveiwName = popupImage.querySelector(".popup__image-name");
 const popupNewMesto = document.querySelector(".popup_style_new-mesto");
-const popupNewMestoForm = document.querySelector(".popup__form_new-mesto");
-const popupMestoLink = document.querySelector(".popup__text_mesto-link");
-const popupMestoName = document.querySelector(".popup__text_mesto-name");
-const popupFormNewMesto = popupNewMesto.querySelector(".popup__form_new-mesto");
- const popupCloseNewMestoBtn = popupNewMesto.querySelector(".popup__close-button_new-mesto"); 
+const popupFormNewMesto = document.forms.newmesto;
+const popupMestoLink = popupFormNewMesto.querySelector(
+  ".popup__input_mesto-link"
+);
+const popupMestoName = popupFormNewMesto.querySelector(
+  ".popup__input_mesto-name"
+);
 const popupAddBtn = document.querySelector(".profile__add-button");
 const popupEditBtn = document.querySelector(".profile__edit-button");
 const userName = document.querySelector(".profile__name");
 const userWhois = document.querySelector(".profile__whois");
 const elementList = document.querySelector(".elements"); //получаем template методом QuerySelector
 const elementTemplate = document.querySelector("#element").content; //получаем содержимое template
-
-
+const popups = document.querySelectorAll(".popup");
 
 function openPopup(opn) {
   opn.classList.add("popup_opened");
- }
+}
 
 function closePopup(cls) {
   cls.classList.remove("popup_opened");
 }
 
+function closePopupOverley() {
+  popups.forEach((popup) => {
+    popup.addEventListener("click", (evt) => {
+      if (evt.target.className === "popup__overlay") {
+        closePopup(popup);
+      }
+    });
+  });
+}
+
+closePopupOverley();
+
+function closeAnyPopup() {
+  popups.forEach((popup) => {
+    popup.addEventListener("click", (evt) => {
+      if (evt.target.classList.contains("popup__close-button-image")) {
+        closePopup(popup);
+      }
+    });
+  });
+}
+
+closeAnyPopup();
+
+function closePopupByEscape() {
+  popups.forEach((popup) => {
+    document.addEventListener("keydown", (evt) => {
+      if (evt.key === "Escape") {
+        closePopup(popup);
+      }
+    });
+  });
+}
+
+closePopupByEscape();
+
 function activeLike(evt) {
   evt.target.classList.toggle("element__like-button_active");
-};
+}
 
 function deleteElement(evt) {
   evt.target.closest(".element").remove();
-};
-
+}
 
 function getCard(element) {
   const userElementTemplate = elementTemplate.cloneNode(true); //клонируем содержимое тега template
@@ -74,35 +111,35 @@ function getCard(element) {
   elementImage.src = element.link;
   elementImage.alt = "Фото" + " " + element.name;
   elementImage.title = "Фото" + " " + element.name;
-  userElementTemplate.querySelector(".element__title").textContent = element.name;
-  userElementTemplate.querySelector(".element__like-button").addEventListener("click", activeLike);
-  userElementTemplate.querySelector(".element__trash-button").addEventListener("click", deleteElement);
+  userElementTemplate.querySelector(".element__title").textContent =
+    element.name;
+  userElementTemplate
+    .querySelector(".element__like-button")
+    .addEventListener("click", activeLike);
+  userElementTemplate
+    .querySelector(".element__trash-button")
+    .addEventListener("click", deleteElement);
   elementImage.addEventListener("click", createImagePreview);
 
   function createImagePreview() {
     openPopup(popupImage);
-    
+
     popupImagePreview.src = element.link;
     popupImagePreview.title = element.name;
     popupImagePreview.alt = element.name;
     popupImagePreveiwName.textContent = element.name;
-    
-};
+  }
 
-return userElementTemplate
-  
+  return userElementTemplate;
 }
 
 function renderCard(userElementTemplate) {
- 
-  elementList.prepend(getCard(userElementTemplate))
+  elementList.prepend(getCard(userElementTemplate));
 }
 
-initialCards.forEach(function (element) { 
-
-  renderCard(element); 
-
-}); 
+initialCards.forEach(function (element) {
+  renderCard(element);
+});
 
 function handleNewMestoFormSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
@@ -113,9 +150,8 @@ function handleNewMestoFormSubmit(evt) {
   };
   renderCard(saveNewMesto);
   closePopup(popupNewMesto);
-  popupNewMestoForm.reset();
-};
-
+  popupFormNewMesto.reset();
+}
 
 function copyProfileInfoToPopup() {
   openPopup(popupEditProfile);
@@ -140,25 +176,9 @@ function profileWhoisTitle() {
   userWhois.style.cursor = "default";
 }
 
-
 userName.addEventListener("mouseover", profileNameTitle);
 userWhois.addEventListener("mouseover", profileWhoisTitle);
 popupEditBtn.addEventListener("click", copyProfileInfoToPopup); //Откроем Popup редактирования профиля
 popupAddBtn.addEventListener("click", () => openPopup(popupNewMesto)); //Откроем Popup добавления картинки
-popupCloseEditProfileBtn.addEventListener("click", () => closePopup(popupEditProfile)); //Закроем Popup редактирования профиля 
-popupCloseNewMestoBtn.addEventListener("click", () => closePopup(popupNewMesto)); //Закроем Popup добавления картинки 
-popupCloseImage.addEventListener("click", () => closePopup(popupImage)); 
 popupFormEditProfile.addEventListener("submit", handleProfileFormSubmit);
 popupFormNewMesto.addEventListener("submit", handleNewMestoFormSubmit);
-
-/* Пробовала, но почему-то не работает. Не разобралась почему. Исправила только класс на .popup__close-button
-
-const popups = document.querySelectorAll(".popup");
-
-popups.forEach((popup) => {
-    popup.addEventListener("click", (evt) => {
-       if (evt.target.classList.contains(".popup__close-button")) {
-          closePopup(popup)
-        }
-    })
-}) */

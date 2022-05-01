@@ -1,0 +1,4 @@
+.popup__input_type_error {
+  opacity: 1;
+  border-bottom-color: red;
+}

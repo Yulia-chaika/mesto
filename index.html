@@ -59,6 +59,7 @@
     </footer>
 
     <div class="popup popup_style_edit">
+      <div class="popup__overlay">
       <div class="popup__container">
         <button aria-label="close" type="button" class="popup__close-button popup__close-button_close_edit-profile">
           <img
@@ -69,27 +70,39 @@
         </button>
         <h2 class="popup__title">Редактировать профиль</h2>
 
-        <form action="#"  class="popup__form popup__form_edit_profile">
+        <form action="#" name="editprofile" class="popup__form popup__form_edit_profile" novalidate>
+         <label for="profilename-input"></label>
           <input
             type="text"
             value=""
-            class="popup__text popup__text_name"
+            class="popup__input popup__input_name"
+            id="profilename-input"
+            minlength="2"
+            maxlength="40"
             required
-          />
+          />      
+          <span name="span" class="popup__input-error profilename-input-error"></span> 
 
+          <label for="profilewhois-input"></label>
           <input
             type="text"
+            id="profilewhois-input"
             value=""
-            class="popup__text popup__text_whois"
+            class="popup__input popup__input_whois"
+            minlength="2"
+            maxlength="400"
             required
           />
-
+          <span name="span" class="popup__input-error profilewhois-input-error"></span>
           <button type="submit" class="popup__save-button">Сохранить</button>
+       
         </form>
       </div>
     </div>
+    </div>
 
     <div class="popup popup_style_new-mesto">
+      <div class="popup__overlay">
       <div class="popup__container">
         <button aria-label="close" class="popup__close-button popup__close-button_new-mesto" >
           <img
@@ -100,33 +113,41 @@
         </button>
         <h2 class="popup__title">Новое место</h2>
 
-        <form action="#" class="popup__form popup__form_new-mesto">
+        <form action="#" name="newmesto" class="popup__form popup__form_new-mesto" novalidate>
+         <label for="mestoname-input">прпрпрп</label>
           <input
             type="text"
             placeholder="Название"
-            class="popup__text popup__text_mesto-name"
-            id="popup-mesto-name"
+            class="popup__input popup__input_mesto-name"
+            id="mestoname-input"
             name="popup-mesto-name"
+            minlength="2"
+            maxlength="30"
             required
           />
-
+          <span class="popup__input-error mestoname-input-error"></span>
+          <label for="mestolink-input"></label>
           <input
-            type="text"
+            type="url"
             placeholder="Ссылка на картинку"
-            class="popup__text popup__text_mesto-link"
-            id="popup-mesto-link"
+            class="popup__input popup__input_mesto-link"
+            id="mestolink-input"
             name="popup-mesto-link"
             required
           />
-
+          <span class="popup__input-error mestolink-input-error"></span>
           <button type="submit" class="popup__save-button" id="popup__save-new-mesto-button">Сохранить</button>
+        
         </form>
+      </div>
       </div>
     </div>
 
     
     <div class="popup popup_style_image">
+      <div class="popup__overlay">
       <div class="popup__container popup__container_style_image">
+        <div class="popup__image">
         <button aria-label="close" type="button" class="popup__close-button popup__close-button_image">
           <img
             src="./images/profile/close-icon.svg"
@@ -134,9 +155,12 @@
             alt="Закрыть x"
           />
         </button>
-        <img class="popup__image">
+       
+        <img class="popup__image-size">
         <p class="popup__image-name"></p>
       </div>
+      </div>
+    </div>
     </div>
     
     <template id="element">
@@ -160,5 +184,6 @@
    </template>
 
     <script src="script.js"></script>
+    <script src="validate.js"></script>
   </body>
 </html>
