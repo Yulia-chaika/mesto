@@ -12,6 +12,10 @@
   align-items: center;
 }
 
+.profile__whois:hover {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 450px) {
   .profile__whois {
     margin: 8px 15px 16px 15px;

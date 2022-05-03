@@ -5,6 +5,6 @@
   color: rgba(0, 0, 0,0.2);
   box-sizing: border-box;
   border-radius: 2px;
-    pointer-events: none;
-    user-select: none;
+  pointer-events: none;
+  user-select: none; 
 }

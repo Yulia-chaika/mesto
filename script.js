@@ -1,33 +1,5 @@
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 const popupEditProfile = document.querySelector(".popup_style_edit");
 const popupFormEditProfile = document.forms.editprofile;
-const popupFormInput = popupFormEditProfile.querySelector(".popup__input");
 const popupUserName = popupFormEditProfile.querySelector(".popup__input_name");
 const popupUserWhois = popupFormEditProfile.querySelector(
   ".popup__input_whois"
@@ -53,28 +25,23 @@ const popups = document.querySelectorAll(".popup");
 
 function openPopup(opn) {
   opn.classList.add("popup_opened");
+  const saveBtn = opn.querySelector(".popup__save-button");
+  document.addEventListener("keydown", closePopupByEscape);
+  inactiveBtn(saveBtn);
 }
 
 function closePopup(cls) {
+  document.removeEventListener("keydown", closePopupByEscape);
   cls.classList.remove("popup_opened");
 }
-
-function closePopupOverley() {
-  popups.forEach((popup) => {
-    popup.addEventListener("click", (evt) => {
-      if (evt.target.className === "popup__overlay") {
-        closePopup(popup);
-      }
-    });
-  });
-}
-
-closePopupOverley();
 
 function closeAnyPopup() {
   popups.forEach((popup) => {
     popup.addEventListener("click", (evt) => {
-      if (evt.target.classList.contains("popup__close-button-image")) {
+      if (
+        evt.target.classList.contains("popup__close-button-image") ||
+        evt.target.className === "popup__overlay"
+      ) {
         closePopup(popup);
       }
     });
@@ -83,17 +50,13 @@ function closeAnyPopup() {
 
 closeAnyPopup();
 
-function closePopupByEscape() {
+function closePopupByEscape(evt) {
   popups.forEach((popup) => {
-    document.addEventListener("keydown", (evt) => {
-      if (evt.key === "Escape") {
-        closePopup(popup);
-      }
-    });
+    if (evt.key === "Escape") {
+      closePopup(popup);
+    }
   });
 }
-
-closePopupByEscape();
 
 function activeLike(evt) {
   evt.target.classList.toggle("element__like-button_active");
@@ -142,8 +105,6 @@ initialCards.forEach(function (element) {
 });
 
 function handleNewMestoFormSubmit(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-
   const saveNewMesto = {
     name: popupMestoName.value,
     link: popupMestoLink.value,
@@ -160,7 +121,6 @@ function copyProfileInfoToPopup() {
 }
 
 function handleProfileFormSubmit(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   userName.textContent = popupUserName.value; // Так мы можем определить свою логику отправки.
   userWhois.textContent = popupUserWhois.value; // О том, как это делать, расскажем позже.
   closePopup(popupEditProfile);
@@ -168,12 +128,10 @@ function handleProfileFormSubmit(evt) {
 
 function profileNameTitle() {
   userName.setAttribute("title", popupUserName.value);
-  userName.style.cursor = "default";
 }
 
 function profileWhoisTitle() {
   userWhois.setAttribute("title", popupUserWhois.value);
-  userWhois.style.cursor = "default";
 }
 
 userName.addEventListener("mouseover", profileNameTitle);

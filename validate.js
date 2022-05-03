@@ -1,22 +1,25 @@
-
-
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, obj) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add('popup__input_type_error');
+  inputElement.classList.add(obj.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input-error_active');
+  errorElement.classList.add(obj.errorClass);
 };
 
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, obj) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('popup__input-error_active');
-  errorElement.textContent = '';
+  inputElement.classList.remove(obj.inputErrorClass);
+  errorElement.classList.remove(obj.errorClass);
+  errorElement.textContent = "";
 };
 
 const checkInputValidity = (formElement, inputElement, obj) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage, obj);
+    showInputError(
+      formElement,
+      inputElement,
+      inputElement.validationMessage,
+      obj
+    );
   } else {
     hideInputError(formElement, inputElement, obj);
   }
@@ -26,17 +29,26 @@ const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
+};
 
-}
-  
-  const toggleButtonState  = (inputList, buttonElement, obj) => {
-    if(hasInvalidInput(inputList))  {
-      buttonElement.classList.add(obj.inactiveButtonClass);
-    } else {
-      // иначе сделай кнопку активной
-      buttonElement.classList.remove(obj.inactiveButtonClass);
-    }
-  };
+const deactivateButton = (buttonElement, obj) => {
+  buttonElement.classList.add(obj.inactiveButtonClass);
+  buttonElement.disabled = true;
+};
+
+const activeteButton = (buttonElement, obj) => {
+  buttonElement.classList.remove(obj.inactiveButtonClass);
+  buttonElement.disabled = false;
+};
+
+const toggleButtonState = (inputList, buttonElement, obj) => {
+  if (hasInvalidInput(inputList)) {
+    deactivateButton(buttonElement, obj);
+  } else {
+    // иначе сделай кнопку активной
+    activeteButton(buttonElement, obj);
+  }
+};
 
 const setEventListeners = (formElement, obj) => {
   const inputList = Array.from(formElement.querySelectorAll(obj.inputSelector));
@@ -45,34 +57,35 @@ const setEventListeners = (formElement, obj) => {
   toggleButtonState(inputList, buttonElement, obj);
 
   inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', function () {
+    inputElement.addEventListener("input", function () {
       checkInputValidity(formElement, inputElement, obj);
       toggleButtonState(inputList, buttonElement, obj);
     });
   });
 };
 
-
 const enableValidation = (obj) => {
-  const formList = Array.from(document.querySelectorAll(obj.formSelector)); 
+  const formList = Array.from(document.querySelectorAll(obj.formSelector));
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
+    formElement.addEventListener("submit", (evt) => {
+      evt.preventDefault(); /* оставила отмену стандартного поведения формы в файле validate.js а в script.js убрала */
     });
-  
+
     setEventListeners(formElement, obj);
-      });
-        
-      }
+  });
+};
 
- 
-  enableValidation({
-    formSelector: ".popup__container",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__save-button",
-    inactiveButtonClass: "popup__save-button_inactive",
-    inputErrorClass: "popup__input_type_error",
-    errorClass: "popup__input-error_active"
-  }); 
+enableValidation({
+  formSelector: ".popup__container",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_inactive",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_active",
+});
 
-  
+function inactiveBtn(btn) {
+  btn.classList.add(formConstants.inactiveButtonClass);
+}
+
+
