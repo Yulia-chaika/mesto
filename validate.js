@@ -31,8 +31,8 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const deactivateButton = (buttonElement, obj) => {
-  buttonElement.classList.add(obj.inactiveButtonClass);
+const deactivateButton = (buttonElement) => {
+  buttonElement.classList.add(formConstants.inactiveButtonClass);
   buttonElement.disabled = true;
 };
 
@@ -67,10 +67,6 @@ const setEventListeners = (formElement, obj) => {
 const enableValidation = (obj) => {
   const formList = Array.from(document.querySelectorAll(obj.formSelector));
   formList.forEach((formElement) => {
-    formElement.addEventListener("submit", (evt) => {
-      evt.preventDefault(); /* оставила отмену стандартного поведения формы в файле validate.js а в script.js убрала */
-    });
-
     setEventListeners(formElement, obj);
   });
 };
@@ -83,9 +79,3 @@ enableValidation({
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__input-error_active",
 });
-
-function inactiveBtn(btn) {
-  btn.classList.add(formConstants.inactiveButtonClass);
-}
-
-

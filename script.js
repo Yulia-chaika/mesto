@@ -25,9 +25,8 @@ const popups = document.querySelectorAll(".popup");
 
 function openPopup(opn) {
   opn.classList.add("popup_opened");
-  const saveBtn = opn.querySelector(".popup__save-button");
+
   document.addEventListener("keydown", closePopupByEscape);
-  inactiveBtn(saveBtn);
 }
 
 function closePopup(cls) {
@@ -51,11 +50,10 @@ function closeAnyPopup() {
 closeAnyPopup();
 
 function closePopupByEscape(evt) {
-  popups.forEach((popup) => {
-    if (evt.key === "Escape") {
-      closePopup(popup);
-    }
-  });
+  const openedPopup = document.querySelector(".popup_opened");
+  if (evt.key === "Escape") {
+    closePopup(openedPopup);
+  }
 }
 
 function activeLike(evt) {
@@ -84,16 +82,16 @@ function getCard(element) {
     .addEventListener("click", deleteElement);
   elementImage.addEventListener("click", createImagePreview);
 
-  function createImagePreview() {
-    openPopup(popupImage);
-
-    popupImagePreview.src = element.link;
-    popupImagePreview.title = element.name;
-    popupImagePreview.alt = element.name;
-    popupImagePreveiwName.textContent = element.name;
-  }
-
   return userElementTemplate;
+}
+
+function createImagePreview(element) {
+  openPopup(popupImage);
+
+  popupImagePreview.src = element.link;
+  popupImagePreview.title = element.name;
+  popupImagePreview.alt = element.name;
+  popupImagePreveiwName.textContent = element.name;
 }
 
 function renderCard(userElementTemplate) {
@@ -105,13 +103,16 @@ initialCards.forEach(function (element) {
 });
 
 function handleNewMestoFormSubmit(evt) {
+  evt.preventDefault();
   const saveNewMesto = {
     name: popupMestoName.value,
     link: popupMestoLink.value,
   };
-  renderCard(saveNewMesto);
-  closePopup(popupNewMesto);
   popupFormNewMesto.reset();
+  renderCard(saveNewMesto);
+  const buttonElement = popupNewMesto.querySelector(".popup__save-button");
+  deactivateButton(buttonElement);
+  closePopup(popupNewMesto);
 }
 
 function copyProfileInfoToPopup() {
@@ -137,6 +138,8 @@ function profileWhoisTitle() {
 userName.addEventListener("mouseover", profileNameTitle);
 userWhois.addEventListener("mouseover", profileWhoisTitle);
 popupEditBtn.addEventListener("click", copyProfileInfoToPopup); //Откроем Popup редактирования профиля
-popupAddBtn.addEventListener("click", () => openPopup(popupNewMesto)); //Откроем Popup добавления картинки
+popupAddBtn.addEventListener("click", () => {
+  openPopup(popupNewMesto);
+}); //Откроем Popup добавления картинки
 popupFormEditProfile.addEventListener("submit", handleProfileFormSubmit);
 popupFormNewMesto.addEventListener("submit", handleNewMestoFormSubmit);
