@@ -1,3 +1,28 @@
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
+const activateButton = (buttonElement) => {
+  buttonElement.classList.remove(formConstants.inactiveButtonClass);
+  buttonElement.disabled = false;
+};
+
+const deactivateButton = (buttonElement) => {
+  buttonElement.classList.add(formConstants.inactiveButtonClass);
+  buttonElement.disabled = true;
+};
+
+const toggleButtonState = (inputList, buttonElement, obj) => {
+  if (hasInvalidInput(inputList)) {
+    deactivateButton(buttonElement, obj);
+  } else {
+    // иначе сделай кнопку активной
+    activateButton(buttonElement, obj);
+  }
+};
+
 const showInputError = (formElement, inputElement, errorMessage, obj) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(obj.inputErrorClass);
@@ -25,31 +50,6 @@ const checkInputValidity = (formElement, inputElement, obj) => {
   }
 };
 
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-
-const deactivateButton = (buttonElement) => {
-  buttonElement.classList.add(formConstants.inactiveButtonClass);
-  buttonElement.disabled = true;
-};
-
-const activeteButton = (buttonElement, obj) => {
-  buttonElement.classList.remove(obj.inactiveButtonClass);
-  buttonElement.disabled = false;
-};
-
-const toggleButtonState = (inputList, buttonElement, obj) => {
-  if (hasInvalidInput(inputList)) {
-    deactivateButton(buttonElement, obj);
-  } else {
-    // иначе сделай кнопку активной
-    activeteButton(buttonElement, obj);
-  }
-};
-
 const setEventListeners = (formElement, obj) => {
   const inputList = Array.from(formElement.querySelectorAll(obj.inputSelector));
   const buttonElement = formElement.querySelector(obj.submitButtonSelector);
@@ -72,7 +72,7 @@ const enableValidation = (obj) => {
 };
 
 enableValidation({
-  formSelector: ".popup__container",
+  formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__save-button",
   inactiveButtonClass: "popup__save-button_inactive",

@@ -50,8 +50,8 @@ function closeAnyPopup() {
 closeAnyPopup();
 
 function closePopupByEscape(evt) {
-  const openedPopup = document.querySelector(".popup_opened");
   if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
     closePopup(openedPopup);
   }
 }
@@ -62,6 +62,15 @@ function activeLike(evt) {
 
 function deleteElement(evt) {
   evt.target.closest(".element").remove();
+}
+
+function createImagePreview(element) {
+  openPopup(popupImage);
+
+  popupImagePreview.src = element.link;
+  popupImagePreview.title = element.name;
+  popupImagePreview.alt = element.name;
+  popupImagePreveiwName.textContent = element.name;
 }
 
 function getCard(element) {
@@ -80,18 +89,9 @@ function getCard(element) {
   userElementTemplate
     .querySelector(".element__trash-button")
     .addEventListener("click", deleteElement);
-  elementImage.addEventListener("click", createImagePreview);
+  elementImage.addEventListener("click", () => createImagePreview(element));
 
   return userElementTemplate;
-}
-
-function createImagePreview(element) {
-  openPopup(popupImage);
-
-  popupImagePreview.src = element.link;
-  popupImagePreview.title = element.name;
-  popupImagePreview.alt = element.name;
-  popupImagePreveiwName.textContent = element.name;
 }
 
 function renderCard(userElementTemplate) {
@@ -122,6 +122,7 @@ function copyProfileInfoToPopup() {
 }
 
 function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
   userName.textContent = popupUserName.value; // Так мы можем определить свою логику отправки.
   userWhois.textContent = popupUserWhois.value; // О том, как это делать, расскажем позже.
   closePopup(popupEditProfile);
