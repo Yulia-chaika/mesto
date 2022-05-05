@@ -1,6 +1,20 @@
 .popup__close-button-image {
-  position: absolute;
+  position: sticky;
   background: none;
   border: 0;
 
+}
+
+@media screen and (max-width: 787px) {
+  .popup__close-button-image {
+    left: 65px;
+    bottom: 85px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .popup__close-button-image {
+    left: 60px;
+    
+  }
 }

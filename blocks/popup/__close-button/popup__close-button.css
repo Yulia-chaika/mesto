@@ -13,12 +13,12 @@
   transition: opacity 1s;
 }
 
-@media screen and (max-width: 786px) {
+/*@media screen and (max-width: 786px) {
   .popup__close-button {
     left: 90%;
     top: 80px;
   }
-}
+}*/
 
 @media screen and (max-width: 320px) {
   .popup__close-button {

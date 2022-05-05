@@ -5,7 +5,7 @@
   background: #ffffff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  align-self: center;
+  
   margin: 0 auto;
   position: relative;
  }
@@ -17,7 +17,7 @@
 
 @media screen and (max-width: 787px) {
   .popup__container {
-    max-width: 88%;
+    max-width: 80%;
     padding: 22px;
   }
 }
