@@ -1,4 +1,4 @@
-const formConstants = {
+export const formConstants = {
   formSelector: ".popup__container",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__save-button",

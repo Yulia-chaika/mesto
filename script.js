@@ -1,12 +1,18 @@
+import { Card } from "./Сard.js";
+import { initialCards } from "./cards.js";
+import FormValidator from "./FormValidator.js";
+import { formConstants } from "./formConstants.js";
+
 const popupEditProfile = document.querySelector(".popup_style_edit");
 const popupFormEditProfile = document.forms.editprofile;
 const popupUserName = popupFormEditProfile.querySelector(".popup__input_name");
 const popupUserWhois = popupFormEditProfile.querySelector(
   ".popup__input_whois"
 );
-const popupImage = document.querySelector(".popup_style_image");
-const popupImagePreview = popupImage.querySelector(".popup__image-size");
-const popupImagePreveiwName = popupImage.querySelector(".popup__image-name");
+export const popupImage = document.querySelector(".popup_style_image");
+export const popupImagePreview = popupImage.querySelector(".popup__image-size");
+export const popupImagePreveiwName =
+  popupImage.querySelector(".popup__image-name");
 const popupNewMesto = document.querySelector(".popup_style_new-mesto");
 const popupFormNewMesto = document.forms.newmesto;
 const popupMestoLink = popupFormNewMesto.querySelector(
@@ -20,10 +26,22 @@ const popupEditBtn = document.querySelector(".profile__edit-button");
 const userName = document.querySelector(".profile__name");
 const userWhois = document.querySelector(".profile__whois");
 const elementList = document.querySelector(".elements"); //получаем template методом QuerySelector
-const elementTemplate = document.querySelector("#element").content; //получаем содержимое template
+const elementTemplate = document.querySelector("#element"); //получаем содержимое template
 const popups = document.querySelectorAll(".popup");
 
-function openPopup(opn) {
+const validatePopupFormEditProfile = new FormValidator(
+  formConstants,
+  popupFormEditProfile
+);
+const validatePopupFormNewMesto = new FormValidator(
+  formConstants,
+  popupFormNewMesto
+);
+
+validatePopupFormEditProfile.enableValidation();
+validatePopupFormNewMesto.enableValidation();
+
+export function openPopup(opn) {
   opn.classList.add("popup_opened");
 
   document.addEventListener("keydown", closePopupByEscape);
@@ -56,62 +74,27 @@ function closePopupByEscape(evt) {
   }
 }
 
-function activeLike(evt) {
-  evt.target.classList.toggle("element__like-button_active");
-}
+initialCards.forEach(function addCard(element) {
+  const card = new Card(element.link, element.title, elementTemplate).getCard();
 
-function deleteElement(evt) {
-  evt.target.closest(".element").remove();
-}
-
-function createImagePreview(element) {
-  openPopup(popupImage);
-
-  popupImagePreview.src = element.link;
-  popupImagePreview.title = element.name;
-  popupImagePreview.alt = element.name;
-  popupImagePreveiwName.textContent = element.name;
-}
-
-function getCard(element) {
-  const userElementTemplate = elementTemplate.cloneNode(true); //клонируем содержимое тега template
-  const elementImage = userElementTemplate.querySelector(".element__image");
-
-  //наполняем содержимым
-  elementImage.src = element.link;
-  elementImage.alt = "Фото" + " " + element.name;
-  elementImage.title = "Фото" + " " + element.name;
-  userElementTemplate.querySelector(".element__title").textContent =
-    element.name;
-  userElementTemplate
-    .querySelector(".element__like-button")
-    .addEventListener("click", activeLike);
-  userElementTemplate
-    .querySelector(".element__trash-button")
-    .addEventListener("click", deleteElement);
-  elementImage.addEventListener("click", () => createImagePreview(element));
-
-  return userElementTemplate;
-}
-
-function renderCard(userElementTemplate) {
-  elementList.prepend(getCard(userElementTemplate));
-}
-
-initialCards.forEach(function (element) {
-  renderCard(element);
+  renderCard(card);
 });
+
+function renderCard(card) {
+  elementList.prepend(card);
+}
 
 function handleNewMestoFormSubmit(evt) {
   evt.preventDefault();
-  const saveNewMesto = {
-    name: popupMestoName.value,
-    link: popupMestoLink.value,
-  };
+  const listSaveNewMesto = new Card(
+    popupMestoLink.value,
+    popupMestoName.value,
+    elementTemplate
+  ).getCard();
+  renderCard(listSaveNewMesto);
   popupFormNewMesto.reset();
-  renderCard(saveNewMesto);
-  const buttonElement = popupNewMesto.querySelector(".popup__save-button");
-  deactivateButton(buttonElement);
+  new FormValidator(formConstants, popupFormNewMesto).deactivateButton();
+
   closePopup(popupNewMesto);
 }
 
