@@ -3,6 +3,7 @@ import { initialCards } from "./cards.js";
 import FormValidator from "./FormValidator.js";
 import { formConstants } from "./formConstants.js";
 
+
 const popupEditProfile = document.querySelector(".popup_style_edit");
 const popupFormEditProfile = document.forms.editprofile;
 const popupUserName = popupFormEditProfile.querySelector(".popup__input_name");
@@ -26,8 +27,8 @@ const popupEditBtn = document.querySelector(".profile__edit-button");
 const userName = document.querySelector(".profile__name");
 const userWhois = document.querySelector(".profile__whois");
 const elementList = document.querySelector(".elements"); //получаем template методом QuerySelector
-const elementTemplate = document.querySelector("#element"); //получаем содержимое template
 const popups = document.querySelectorAll(".popup");
+const elementSelector = ("#element");
 
 const validatePopupFormEditProfile = new FormValidator(
   formConstants,
@@ -74,26 +75,26 @@ function closePopupByEscape(evt) {
   }
 }
 
-initialCards.forEach(function addCard(element) {
-  const card = new Card(element.link, element.title, elementTemplate).getCard();
+function generateCard(link, title, templ) {
+  return new Card(link, title, templ).getCard();
+}
 
-  renderCard(card);
+initialCards.forEach(function addCard(element) {
+  const cardList = generateCard(element.link, element.title, elementSelector);
+
+  renderCard(cardList);
 });
 
-function renderCard(card) {
-  elementList.prepend(card);
+function renderCard(cardList) {
+  elementList.prepend(cardList);
 }
 
 function handleNewMestoFormSubmit(evt) {
   evt.preventDefault();
-  const listSaveNewMesto = new Card(
-    popupMestoLink.value,
-    popupMestoName.value,
-    elementTemplate
-  ).getCard();
+  const listSaveNewMesto = generateCard(popupMestoLink.value, popupMestoName.value,   elementSelector);
   renderCard(listSaveNewMesto);
   popupFormNewMesto.reset();
-  new FormValidator(formConstants, popupFormNewMesto).deactivateButton();
+  validatePopupFormNewMesto.deactivateButton();
 
   closePopup(popupNewMesto);
 }

@@ -94,7 +94,7 @@
 
             <input
               type="text"
-              id="profilewhois-input"
+              id="profilewhois-input-error"
               value=""
               class="popup__input popup__input_whois"
               minlength="2"
@@ -136,7 +136,7 @@
               type="text"
               placeholder="Название"
               class="popup__input popup__input_mesto-name"
-              id="mestoname-input"
+              id="mestoname-input-error"
               name="popup-mesto-name"
               minlength="2"
               maxlength="30"
@@ -148,7 +148,7 @@
               type="url"
               placeholder="Ссылка на картинку"
               class="popup__input popup__input_mesto-link"
-              id="mestolink-input"
+              id="mestolink-input-error"
               name="popup-mesto-link"
               required
             />
@@ -166,7 +166,7 @@
     </div>
 
     <div class="popup popup_style_image">
-      <div class="popup__overlay popup__overlay_image">
+      <div class="popup__overlay">
         <div class="popup__container popup__container_style_image">
           <div class="popup__image">
             <button
@@ -212,5 +212,6 @@
     <script type="module" src="script.js"></script>
     <script type="module" src="cards.js"></script>
     <script type="module" src="card.js"></script>
+    <script typy="module" src="selectors.js"></script>
   </body>
 </html>
